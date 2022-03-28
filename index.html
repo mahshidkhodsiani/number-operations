@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        div{
+            margin-top: 50px;
+            margin-left: 450px;
+            padding-top: 20px;
+            padding-left: 30px;
+            height: 350px;
+            width: 350px;
+            background-color: rgb(183, 157, 190);
+        }
+
+        #conclusion{
+            background-color: yellow;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-top: 20px;
+        }
+
+        #firstNumber:focus {
+            /* background-color: red; */
+            /* border: none; */
+            outline: none;
+        }
+    </style>
+    <script type="text/javascript">
+        function operate (){
+           var first = document.getElementById('firstNumber').value;
+           var second = document.getElementById('secondNumber').value;
+           var multi = parseInt(first) * parseInt (second);
+           var divide = parseInt(first) / parseInt (second);
+           var gcd =1;
+           for (var i=1 ; i<=first && i<=second ; ++i){
+            if(first % i==0 && second % i==0)
+            gcd = i;
+           }
+
+           var fibo = [1,1];
+           for (var i = 2; i < second ; ++i) {
+               fibo[i] = fibo[i-1] + fibo[i-2];
+               console.log("i = "+i, " fibo[" +i+ "] = "+fibo[i]);
+               // fibo[2] = 1 +1;
+               // fibo[3] = fibo[2]  + fibo[1]
+               //fibo[4]=fibo[3] + fobp[2] = 
+           }
+
+           // 1,1,2,3,5,8,13
+
+           
+
+            document.getElementById('demo').innerHTML="first number * second number : "+ multi;
+            document.getElementById('demo1').innerHTML="first number / second number :"+ divide;
+            document.getElementById('demo2').innerHTML =" gcd "+first+" and "+second + " : " + gcd;
+            document.getElementById('demo3').innerHTML ="fibonaci : " +fibo[second-1];
+          
+        }
+
+        var t = setInterval (function(){timer()} , 1000)
+        function timer (){
+            var d = new Date ();
+            document.getElementById ('timer').innerHTML = d.toLocaleTimeString();
+        }
+
+        var timerState = true ; 
+        function changeTimer(btn){
+            
+            if(timerState){
+                clearInterval(t)
+                btn.value = "play";
+                timerState = false;
+            }
+            else{
+                t = setInterval (function(){timer()} , 1000) 
+                btn.value = "pause" 
+                timerState = true
+            }
+        }
+        
+    </script>
+
+</head>
+<body>
+<div>
+    <label>Number 1 :</label>
+    <input id="firstNumber" type="text" placeholder="first num"> <br><br>
+    <label>Number 2 :</label>
+    <input id="secondNumber" type="text">
+    <br>
+    <input type="submit" id="conclusion" onclick="operate()">
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+
+</div>
+
+<span style="background-color: aqua; color: darkblue;" id="timer"></span>
+<input type="button" value="pause" onclick="changeTimer()">
+
+</body>
+</html>
